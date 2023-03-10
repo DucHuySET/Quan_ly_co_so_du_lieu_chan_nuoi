@@ -1,0 +1,134 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <img src="{% static "dist/img/hust_old.jpg" %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: 1">
+      <span class="brand-text font-weight-light">Đại Học Bách Khoa</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static "dist/img/account_avt.png" %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'staff_profile' %}" class="d-block">{{ user.username }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <!-- <li class="nav-item">
+            {% url 'staff_home' as staff_home %}
+            <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li> -->
+        <li class="nav-item">
+            {% url 'Them_co_so' as Them_co_so %}
+            <a href="{% url 'Them_co_so' %}" class="nav-link {% if request.path == Them_co_so %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Thêm cơ sở
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'Quan_ly_co_so' as Quan_ly_co_so %}
+              {% url 'Sua_co_so' course_id=id as Sua_co_so %}
+            <a href="{% url 'Quan_ly_co_so' %}" class="nav-link {% if request.path == Quan_ly_co_so %} active {% endif %} {% if request.path == Sua_co_so %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý cơ sở
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'Them_loai_co_so' as Them_loai_co_so %}
+            <a href="{% url 'Them_loai_co_so' %}" class="nav-link {% if request.path == Them_loai_co_so %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Các loại cơ sở
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            {% url 'Addthongtincosothuy' as Addthongtincosothuy %}
+            <a href="{% url 'Addthongtincosothuy' %}" class="nav-link {% if request.path == Addthongtincosothuy %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Cơ sở thú y
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            {% url 'Quanlychicucthuy' as Quanlychicucthuy %}
+              {% url 'suathongtinchicucthuy' course_id=id as suathongtinchicucthuy %}
+            <a href="{% url 'Quanlychicucthuy' %}" class="nav-link {% if request.path == Quanlychicucthuy %} active {% endif %} {% if request.path == suathongtinchicucthuy %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý chi cục thú y
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'adddailybanthuoc' as adddailybanthuoc %}
+            <a href="{% url 'adddailybanthuoc' %}" class="nav-link {% if request.path == adddailybanthuoc %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Đại lý bán thuốc
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'Quanlydailybanthuoc' as Quanlydailybanthuoc %}
+              {% url 'suathongtindailybanthuoc' course_id=id as suathongtindailybanthuoc %}
+            <a href="{% url 'Quanlydailybanthuoc' %}" class="nav-link {% if request.path == Quanlydailybanthuoc %} active {% endif %} {% if request.path == suathongtindailybanthuoc %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lý đại lý bán thuốc
+              </p>
+            </a>
+          </li>
+          
+         <li class="nav-item">
+            {% url 'Them_vung_chan_nuoi' as Them_vung_chan_nuoi %}
+            <a href="{% url 'Them_vung_chan_nuoi' %}" class="nav-link {% if request.path == Them_vung_chan_nuoi %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                    Thêm vùng chăn nuôi
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            {% url 'Quan_vung_chan_nuoi' as Quan_vung_chan_nuoi %}
+            <a href="{% url 'Quan_vung_chan_nuoi' %}" class="nav-link {% if request.path == Quan_vung_chan_nuoi %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                    Quản lý vùng chăn nuôi
+              </p>
+            </a>
+          </li>
+
+
+
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

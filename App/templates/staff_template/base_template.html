@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .navbardrop {
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(169, 22, 22);
+    position: absolute;
+    overflow: visible;
+    z-index: 9999;
+  }
+  
+  .navbardrop a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbardrop a:hover, .dropdown:hover .dropbtn {
+    background-color: rgb(214, 109, 104);
+  }
+
+  .dropdown-content {
+    display: none;
+    position: relative;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: visible;
+    z-index: 100;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgb(214, 109, 104);
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hệ thống quản lý cơ sở dữ liệu chăn nuôi</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{% static "plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static "plugins/icheck-bootstrap/icheck-bootstrap.min.css" %}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static "plugins/jqvmap/jqvmap.min.css" %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css" %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static "plugins/overlayScrollbars/css/OverlayScrollbars.min.css" %}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static "plugins/daterangepicker/daterangepicker.css" %}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static "plugins/summernote/summernote-bs4.css" %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {% block custom_css %}{% endblock custom_css %}
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand navbar-white navbar-light">
+    
+    <h4 style="margin-left: 0px;margin-top: 5px;">Hệ thống quản lý dữ liệu chăn nuôi | Cán bộ nghiệp vụ</h4>
+    <ul class="navbar-nav ml-auto">
+      <li>
+        <div class="user-panel mt-3 pb-3 d-flex">
+          <div class="image">
+            <img src="{% static "dist/img/account_avt.png" %}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="{% url 'staff_profile' %}" class="d-block">{{ user.username }}</a>
+          </div>
+        </div>
+      </li>
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}" style="padding-top: 20px;">
+          Đăng xuất
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+
+  <!-- Content Wrapper. Contains page content -->
+   <div class="">
+    <div class="navbardrop">
+      <div class="dropdown">
+        <button class="dropbtn">Quản lý cơ sở 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          {% url 'Them_co_so' as Them_co_so %}
+          <a href="{% url 'Them_co_so' %}" class="nav-link {% if request.path == Them_co_so %} active {% endif %}">
+                Thêm cơ sở
+          </a>
+          {% url 'Quan_ly_co_so' as Quan_ly_co_so %}
+          {% url 'Sua_co_so' course_id=id as Sua_co_so %}
+          <a href="{% url 'Quan_ly_co_so' %}" class="nav-link {% if request.path == Quan_ly_co_so %} active {% endif %} {% if request.path == Sua_co_so %} active {% endif %}">
+              Quản lý cơ sở
+          </a>
+          {% url 'Them_loai_co_so' as Them_loai_co_so %}
+          <a href="{% url 'Them_loai_co_so' %}" class="nav-link {% if request.path == Them_loai_co_so %} active {% endif %}">
+              Các loại cơ sở
+          </a>
+        </div>
+      </div> 
+      <div class="dropdown">
+        <button class="dropbtn">Thú Y 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          {% url 'Addthongtincosothuy' as Addthongtincosothuy %}
+            <a href="{% url 'Addthongtincosothuy' %}" class="nav-link {% if request.path == Addthongtincosothuy %} active {% endif %}">
+                Cơ sở thú y
+            </a>
+          {% url 'Quanlychicucthuy' as Quanlychicucthuy %}
+          {% url 'suathongtinchicucthuy' course_id=id as suathongtinchicucthuy %}
+          <a href="{% url 'Quanlychicucthuy' %}" class="nav-link {% if request.path == Quanlychicucthuy %} active {% endif %} {% if request.path == suathongtinchicucthuy %} active {% endif %}">
+              Quản lý chi cục thú y
+          </a>
+        </div>
+      </div> 
+     
+      <div class="dropdown">
+        <button class="dropbtn">Đại lý bán thuốc
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          {% url 'adddailybanthuoc' as adddailybanthuoc %}
+            <a href="{% url 'adddailybanthuoc' %}" class="nav-link {% if request.path == adddailybanthuoc %} active {% endif %}">
+                Thêm đại lý bán thuốc
+            </a>
+            {% url 'Quanlydailybanthuoc' as Quanlydailybanthuoc %}
+            {% url 'suathongtindailybanthuoc' course_id=id as suathongtindailybanthuoc %}
+          <a href="{% url 'Quanlydailybanthuoc' %}" class="nav-link {% if request.path == Quanlydailybanthuoc %} active {% endif %} {% if request.path == suathongtindailybanthuoc %} active {% endif %}">
+              Quản lý đại lý bán thuốc
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Vùng chăn nuôi
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          {% url 'Them_vung_chan_nuoi' as Them_vung_chan_nuoi %}
+          <a href="{% url 'Them_vung_chan_nuoi' %}" class="nav-link {% if request.path == Them_vung_chan_nuoi %} active {% endif %}">
+                  Thêm vùng chăn nuôi
+          </a>
+          {% url 'Quan_vung_chan_nuoi' as Quan_vung_chan_nuoi %}
+          <a href="{% url 'Quan_vung_chan_nuoi' %}" class="nav-link {% if request.path == Quan_vung_chan_nuoi %} active {% endif %}">
+                  Quản lý vùng chăn nuôi
+          </a>
+        </div>
+      </div>
+    </div>
+       <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">
+                {% block page_title %}
+                {% endblock page_title %}
+            </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'staff_home' %}">Home</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+     {% block main_content %}{% endblock main_content %}
+
+  </div>
+  <!-- /.content-wrapper -->
+    {% include 'staff_template/footer.html' %}
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static "plugins/jquery-ui/jquery-ui.min.js" %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static "plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+<!-- ChartJS -->
+<script src="{% static "plugins/chart.js/Chart.min.js" %}"></script>
+<!-- Sparkline -->
+<script src="{% static "plugins/sparklines/sparkline.js" %}"></script>
+<!-- JQVMap -->
+<script src="{% static "plugins/jqvmap/jquery.vmap.min.js" %}"></script>
+<script src="{% static "plugins/jqvmap/maps/jquery.vmap.usa.js" %}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static "plugins/jquery-knob/jquery.knob.min.js" %}"></script>
+<!-- daterangepicker -->
+<script src="{% static "plugins/moment/moment.min.js" %}"></script>
+<script src="{% static "plugins/daterangepicker/daterangepicker.js" %}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static "plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js" %}"></script>
+<!-- Summernote -->
+<script src="{% static "plugins/summernote/summernote-bs4.min.js" %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static "plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js" %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static "dist/js/adminlte.js" %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static "dist/js/pages/dashboard.js" %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static "dist/js/demo.js" %}"></script>
+
+{% block custom_js %}
+{% endblock custom_js %}
+
+</body>
+</html>

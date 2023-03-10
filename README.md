@@ -1,9 +1,13 @@
-# Project guide
-1. Installation Steps :
+# Bài tập lớn môn học: Kỹ thuật phần mềm ứng dụng. 
+Đề tài: xây dựng cơ sở dữ liệu quản lý chăn nuôi
+
+
+# Hướng dẫn làm việc với project
+1. Instalation :
 - Clone this repository, you should use a virtual environment to store your Django project’s
 ```shell
-$ git clone https://github.com/Jackson2706/Primary_School_Management.git
-$ cd Primary_School_Management
+$ git clone https://github.com/DucHuySET/Quan_ly_co_so_du_lieu_chan_nuoi.git
+$ cd <folder>
 ```
 - Install the Django code with Pip:
 ```shell
